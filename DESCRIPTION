@@ -37,3 +37,16 @@ Encoding: UTF-8
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
+Remotes:
+    pecanproject/pecan/base/logger@develop,
+    pecanproject/pecan/base/remote@develop,
+    pecanproject/pecan/base/utils@develop,
+    pecanproject/pecan/base/db@develop,
+    pecanproject/pecan/base/settings@develop,
+    pecanproject/pecan/modules/data.land@develop,
+    pecanproject/pecan/modules/emulator@develop,
+    pecanproject/pecan/modules/benchmark@develop,
+    pecanproject/pecan/modules/priors@develop,
+    pecanproject/pecan/modules/meta.analysis@develop,
+    pecanproject/pecan/modules/uncertainty@develop,
+    pecanproject/pecan/modules/assim.batch@develop
