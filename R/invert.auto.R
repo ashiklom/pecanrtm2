@@ -37,7 +37,7 @@
 #' inputs list containing runID, initial values, and resume (NULL) as an
 #' argument.
 #'
-#' * `calculate.burnin` -- If `TRUE`, use `PEcAn.assim.batch::autoburin`
+#' * `calculate.burnin` -- If `TRUE`, use `autoburin`
 #' function to calculate burnin. Otherwise, assume burnin is `min(niter/2,
 #' iter_conv_check)`.
 #'
@@ -255,7 +255,7 @@ combineChains <- function(samps1, samps2) {
     sampsfinal[[i]] <- rbind(samps1[[i]], samps2[[i]])
   }
   stopifnot(length(sampsfinal) == length(samps1))
-  out <- PEcAn.assim.batch::makeMCMCList(sampsfinal)
+  out <- makeMCMCList(sampsfinal)
   return(out)
 } # combineChains
 
@@ -274,7 +274,7 @@ process_output <- function(output.list,
   out <- list()
 
   if (is.null(prev_out)) {
-    out$samples <- PEcAn.assim.batch::makeMCMCList(samples.current)
+    out$samples <- makeMCMCList(samples.current)
     out$deviance_list <- deviance_list.current
     out$n_eff_list <- n_eff_list.current
   } else {
@@ -309,7 +309,7 @@ process_output <- function(output.list,
     message("Passed initial convergence check.")
   }
   if (calculate.burnin) {
-    burn <- PEcAn.assim.batch::autoburnin(out$samples, return.burnin = TRUE, method = 'gelman.plot')
+    burn <- autoburnin(out$samples, return.burnin = TRUE, method = 'gelman.plot')
     out$burnin <- burn$burnin
     if (out$burnin == 1) {
       message("Robust convergence check in autoburnin failed. ",

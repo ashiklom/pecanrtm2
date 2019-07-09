@@ -35,8 +35,8 @@ options(warn=1)
 test.parallel <- invert.auto(obs, invert.options, parallel = TRUE)
 print_results_summary(test.parallel)
 
-plot(PEcAn.assim.batch::makeMCMCList(test.parallel$n_eff_list))
-plot(PEcAn.assim.batch::makeMCMCList(test.parallel$deviance_list))
+plot(makeMCMCList(test.parallel$n_eff_list))
+plot(makeMCMCList(test.parallel$deviance_list))
 
 #test.serial <- invert.custom(obs, invert.options)
 

@@ -35,7 +35,7 @@ samples <- invert_bt(observed = observed, model = model, prior = prior,
                      custom_settings = custom_settings)
 
 samples_mcmc <- BayesianTools::getSample(samples, coda = TRUE)
-samples_burned <- PEcAn.assim.batch::autoburnin(samples_mcmc, method = 'gelman.plot', threshold = threshold)
+samples_burned <- autoburnin(samples_mcmc, method = 'gelman.plot', threshold = threshold)
 
 mean_estimates <- do.call(cbind, summary(samples_burned, quantiles = c(0.01, 0.5, 0.99))[c('statistics', 'quantiles')])
 

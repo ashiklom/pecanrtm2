@@ -82,7 +82,7 @@ prospect_bt_prior <- function(version, custom_prior = list()) {
     default_params <- defparam(paste0('prospect_', tolower(version)))
     use_names <- c(names(default_params), 'residual')
     prior_df <- prior_df_all[prior_df_all[['param_name']] %in% use_names,]
-    prior <- PEcAn.assim.batch::pda.create.btprior(prior_df)
+    prior <- pda.create.btprior(prior_df)
     return(prior)
 }
 
@@ -241,10 +241,10 @@ invert_bt <- function(observed, model, prior, custom_settings = list(), loglike 
     converged <- bt_check_convergence(samples = samples, threshold = threshold, use_mpsrf = use_mpsrf)
     if (converged) {
       coda_samples <- BayesianTools::getSample(samples, coda = TRUE)
-      burned_samples <- PEcAn.assim.batch::autoburnin(coda_samples, threshold = threshold,
-                                                      return.burnin = TRUE, method = 'gelman.plot')
+      burned_samples <- autoburnin(coda_samples, threshold = threshold,
+                                   return.burnin = TRUE, method = 'gelman.plot')
       if (burned_samples$burnin == 1) {
-        message('PEcAn.assim.batch::autoburnin reports convergence has not been achieved. ',
+        message('autoburnin reports convergence has not been achieved. ',
                 'Resuming sampling.')
         converged <- FALSE
         next
